@@ -1,9 +1,12 @@
 package text_editor;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import javax.swing.*;
 import javax.swing.text.*;
+
+
 
 
 
@@ -15,12 +18,17 @@ class TextEditor extends JFrame {
 	private JFileChooser dialog = new JFileChooser(System.getProperty("user.dir"));
 	private String currentFile = "Untitled";
 	private boolean changed = false;
+	public JPanel panel = new JPanel();
+	public JTabbedPane tabs;
+	int i = 0;
+	
 
 	public TextEditor() {
 		area.setFont(new Font("Monospaced", Font.PLAIN, 12));
 		JScrollPane scroll = new JScrollPane(area,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		add(scroll, BorderLayout.CENTER);
 		
+		tabs = new JTabbedPane();
 		JMenuBar JMB = new JMenuBar();
 		setJMenuBar (JMB);
 		JMenu file = new JMenu ("File");
@@ -34,6 +42,8 @@ class TextEditor extends JFrame {
 		file.add(SaveAs);
 		file.add(Quit);
 		file.addSeparator();
+		
+		
 		
 		for(int i=0; i<4; i++){
 			file.getItem(i).setIcon(null);
@@ -69,6 +79,8 @@ class TextEditor extends JFrame {
 			setTitle(currentFile);
 			setVisible(true);
 			
+		
+			
 		}
 	
 	private KeyListener k1 = new KeyAdapter() {
@@ -91,13 +103,8 @@ class TextEditor extends JFrame {
 	
 	Action New = new AbstractAction("New", new ImageIcon("src/resources/new.png")) {
 		public void actionPerformed(ActionEvent e) {
-//			saveOld();
-//			if(dialog.showOpenDialog(null)==JFileChooser.APPROVE_OPTION) {
-//				readInFile(dialog.getSelectedFile().getAbsolutePath());
-//			}
-//			SaveAs.setEnabled(true);
-			
 			new TextEditor();
+			
 		}
 	};
 	
